@@ -4,6 +4,14 @@
   "description": "Claude Code-style status line for pi: model │ project git:(branch) │ session duration + context usage bar",
   "license": "MIT",
   "author": "Ziy1-Tan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ziy1-Tan/pi-status-line.git"
+  },
+  "homepage": "https://github.com/Ziy1-Tan/pi-status-line#readme",
+  "bugs": {
+    "url": "https://github.com/Ziy1-Tan/pi-status-line/issues"
+  },
   "type": "module",
   "files": [
     "extensions",
