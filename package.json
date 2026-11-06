@@ -1,0 +1,35 @@
+{
+  "name": "pi-hud",
+  "version": "0.1.0",
+  "description": "Claude Code 风格的 pi 状态行 HUD：模型 │ 项目 git:(分支) │ 会话时长 + context 占用条",
+  "license": "MIT",
+  "author": "Ziy1-Tan",
+  "type": "module",
+  "files": [
+    "extensions",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "pi",
+    "pi-package",
+    "pi-extension",
+    "hud",
+    "statusline",
+    "tui"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/pi-hud.ts"
+    ]
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^1.5.0",
+    "@earendil-works/pi-tui": "^1.5.0",
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3"
+  }
+}
