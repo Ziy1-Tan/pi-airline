@@ -1,14 +1,15 @@
 {
   "name": "pi-hud",
   "version": "0.1.0",
-  "description": "Claude Code 风格的 pi 状态行 HUD：模型 │ 项目 git:(分支) │ 会话时长 + context 占用条",
+  "description": "Claude Code-style status line HUD for pi: model │ project git:(branch) │ session duration + context usage bar",
   "license": "MIT",
   "author": "Ziy1-Tan",
   "type": "module",
   "files": [
     "extensions",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "pi-hud-previewpng.png"
   ],
   "keywords": [
     "pi",
@@ -21,7 +22,8 @@
   "pi": {
     "extensions": [
       "./extensions/pi-hud.ts"
-    ]
+    ],
+    "image": "./pi-hud-previewpng.png"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

@@ -1,48 +1,47 @@
 # pi-hud
 
-Claude Code 风格的 [pi](https://github.com/earendil-works/pi) 状态行（footer）。
+A Claude Code-style status line for pi: model, project, git branch, session time and context usage, always in view.
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+![pi-hud in action](pi-hud-previewpng.png)
+
+## Install
+
+From a terminal, run:
 
 ```
-[deepseek-flash] │ ob_notes git:(main*) │ ⏱ 12m
+pi install git:github.com/Ziy1-Tan/pi-hud
+```
+
+The HUD takes over the footer when the session starts, and `/hud` turns it off and back on. To update, run `pi update --extensions`, then `/reload` in a running session.
+
+## What you see
+
+The HUD is two lines:
+
+```
+[Opus] │ my-project git:(main*) │ ⏱ 12m
 Context █████░░░░░ 45%
 ```
 
-- 行1：当前模型 │ 项目目录 `git:(分支)`（有未提交改动时带 `*`）│ 会话时长
-- 行2：context 占用条，绿色 <70%、黄色 ≥70%、红色 ≥85%
+The first line carries the model, the project directory, the git branch (`*` marks uncommitted changes) and the session time. The second draws context usage as a ten-cell bar: green below 70%, yellow from 70%, red from 85%.
 
-`⏱` 每 30 秒才刷新一次，渲染按 5 秒节流，连续工具调用不会导致状态行频繁重绘。配色沿用上游 claude-hud 的硬编码 ANSI。
+The clock counts whole minutes, and renders are throttled to one every five seconds, so a burst of tool calls does not repaint the line.
 
-## 安装
-
-本地目录（本仓库）：
-
-```bash
-pi install ./pi-hud
-```
-
-或直接写进 `~/.pi/agent/settings.json`：
-
-```json
-{
-  "extensions": ["/absolute/path/to/pi-hud"]
-}
-```
-
-装好后 `/reload` 生效。用 `/hud` 开关显示。
-
-## 开发
+## Development
 
 ```bash
 npm install
 npm run typecheck
 ```
 
-扩展只有一个文件 `extensions/pi-hud.ts`，无需构建，pi 直接加载 TypeScript。
+`extensions/pi-hud.ts` is the whole extension. There is no build step: pi loads the TypeScript directly.
 
-## 致谢
+## Credits
 
-逻辑与配色参考 [jarrodwatts/claude-hud](https://github.com/jarrodwatts/claude-hud)。
+Layout and colors follow [jarrodwatts/claude-hud](https://github.com/jarrodwatts/claude-hud).
 
 ## License
 
-MIT
+MIT. See [LICENSE](LICENSE).
