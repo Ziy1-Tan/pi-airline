@@ -1,38 +1,42 @@
 {
-  "name": "pi-status-line",
+  "name": "pi-airline",
   "version": "0.1.0",
-  "description": "Claude Code-style status line for pi: model │ project git:(branch) │ session duration + context usage bar",
+  "description": "Claude Code-style status line / HUD for pi: model │ project git:(branch) │ session duration + context usage bar",
   "license": "MIT",
   "author": "Ziy1-Tan",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ziy1-Tan/pi-status-line.git"
+    "url": "git+https://github.com/Ziy1-Tan/pi-airline.git"
   },
-  "homepage": "https://github.com/Ziy1-Tan/pi-status-line#readme",
+  "homepage": "https://github.com/Ziy1-Tan/pi-airline#readme",
   "bugs": {
-    "url": "https://github.com/Ziy1-Tan/pi-status-line/issues"
+    "url": "https://github.com/Ziy1-Tan/pi-airline/issues"
   },
   "type": "module",
   "files": [
     "extensions",
     "README.md",
     "LICENSE",
-    "pi-status-line-preview.png"
+    "pi-airline-preview.png"
   ],
   "keywords": [
     "pi",
     "pi-package",
     "pi-extension",
+    "airline",
     "hud",
     "statusline",
     "status-line",
+    "status bar",
+    "footer",
+    "claude-code",
     "tui"
   ],
   "pi": {
     "extensions": [
-      "./extensions/pi-status-line.ts"
+      "./extensions/pi-airline.ts"
     ],
-    "image": "./pi-status-line-preview.png"
+    "image": "./pi-airline-preview.png"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
