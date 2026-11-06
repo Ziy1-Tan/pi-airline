@@ -1,5 +1,5 @@
 /**
- * pi-hud — a Claude Code–style status line for pi. Ported from claude-hud
+ * pi-status-line — a Claude Code–style status line for pi. Ported from claude-hud
  * (https://github.com/jarrodwatts/claude-hud), with matching colors (hardcoded ANSI).
  *
  * Replaces the footer with two lines:
@@ -9,7 +9,7 @@
  * Renders are throttled to one per 5s, so back-to-back tool calls (read/bash, ...)
  * are coalesced instead of repainting on every call.
  *
- * Install: `pi install ./pi-hud`, or add an absolute path to the `extensions` array in settings.json
+ * Install: `pi install git:github.com/Ziy1-Tan/pi-status-line`
  * Toggle: /hud
  */
 
@@ -151,7 +151,7 @@ export default function (pi: ExtensionAPI) {
 	});
 
 	pi.registerCommand("hud", {
-		description: "Toggle pi-hud (status line footer)",
+		description: "Toggle the pi-status-line footer",
 		handler: async (_args, ctx) => {
 			enabled = !enabled;
 			if (enabled) {
@@ -160,7 +160,7 @@ export default function (pi: ExtensionAPI) {
 				ctx.ui.setFooter(undefined);
 				tuiRef = null;
 			}
-			ctx.ui.notify(`pi-hud ${enabled ? "enabled" : "disabled"}`, "info");
+			ctx.ui.notify(`pi-status-line ${enabled ? "enabled" : "disabled"}`, "info");
 		},
 	});
 }

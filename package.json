@@ -1,7 +1,7 @@
 {
-  "name": "pi-hud",
+  "name": "pi-status-line",
   "version": "0.1.0",
-  "description": "Claude Code-style status line HUD for pi: model │ project git:(branch) │ session duration + context usage bar",
+  "description": "Claude Code-style status line for pi: model │ project git:(branch) │ session duration + context usage bar",
   "license": "MIT",
   "author": "Ziy1-Tan",
   "type": "module",
@@ -9,7 +9,7 @@
     "extensions",
     "README.md",
     "LICENSE",
-    "pi-hud-previewpng.png"
+    "pi-status-line-preview.png"
   ],
   "keywords": [
     "pi",
@@ -17,13 +17,14 @@
     "pi-extension",
     "hud",
     "statusline",
+    "status-line",
     "tui"
   ],
   "pi": {
     "extensions": [
-      "./extensions/pi-hud.ts"
+      "./extensions/pi-status-line.ts"
     ],
-    "image": "./pi-hud-previewpng.png"
+    "image": "./pi-status-line-preview.png"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
