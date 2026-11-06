@@ -9,7 +9,7 @@
  * Renders are throttled to one per 5s, so back-to-back tool calls (read/bash, ...)
  * are coalesced instead of repainting on every call.
  *
- * Install: `pi install git:github.com/Ziy1-Tan/pi-airline`
+ * Install: `pi install npm:pi-airline`
  * Toggle: /hud
  */
 

@@ -17,6 +17,7 @@
     "extensions",
     "README.md",
     "LICENSE",
+    "CHANGELOG.md",
     "pi-airline-preview.png"
   ],
   "keywords": [
@@ -40,6 +41,14 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": { "optional": true },
+    "@earendil-works/pi-tui": { "optional": true }
   },
   "devDependencies": {
     "@earendil-works/pi-coding-agent": "^1.5.0",

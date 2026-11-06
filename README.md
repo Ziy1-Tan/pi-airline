@@ -11,6 +11,12 @@ A Claude Code-style status line (statusline / HUD) for pi: model, project, git b
 From a terminal, run:
 
 ```
+pi install npm:pi-airline
+```
+
+Or straight from git:
+
+```
 pi install git:github.com/Ziy1-Tan/pi-airline
 ```
 
