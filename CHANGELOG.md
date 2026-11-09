@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0]
+
+- Fix: dirty marker refreshes every 10s even with no tool activity, so it no longer sticks after committing from another terminal.
+- Fix: a failed or hung `git status` keeps the last snapshot instead of reporting the repo as clean; hung calls are killed after 10s.
+- Fix: a git result still in flight across a session switch is dropped instead of showing the previous session's dirtiness.
+- Fix: the context bar is hidden while usage is unknown (right after compaction) instead of showing a fake 0%.
+- Change: (branch, dirty) always come from a single `git status -b --porcelain` snapshot; the framework's branch watcher now only triggers a re-sample.
+- Change: elapsed time ticks every second while the session is idle.
+- Change: renders are no longer throttled to 5s — the TUI already coalesces frames, so state changes show up immediately.
+- Change: context usage is cached per (session, leaf, model); the footer no longer rescans the whole session on every keystroke.
+- Change: when disabled or outside TUI mode, the extension spawns no processes and runs no timers.
+
 ## [0.1.0]
 
 - Initial release: two-line footer HUD with model, project, git branch, session duration and context usage bar.

@@ -1,6 +1,6 @@
 {
   "name": "pi-airline",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Claude Code-style status line / HUD for pi: model │ project git:(branch) │ session duration + context usage bar",
   "license": "MIT",
   "author": "Ziy1-Tan",
