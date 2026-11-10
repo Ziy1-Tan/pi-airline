@@ -40,6 +40,14 @@ jobs:
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
 
+      # Debug: print the OIDC claims npm matches against the trusted publisher
+      # config (claims only, never the token itself).
+      - name: Show OIDC claims
+        run: |
+          tok=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=npm:registry.npmjs.org" | jq -r .value)
+          echo "$tok" | python3 -c 'import sys,json,base64; p=sys.stdin.read().split(".")[1]; c=json.loads(base64.urlsafe_b64decode(p+"="*(-len(p)%4))); print(json.dumps({k:c.get(k) for k in ["repository","repository_owner","workflow_ref","job_workflow_ref","ref","event_name","environment"]},indent=2))'
+
       - name: Publish
         if: steps.check.outputs.skip != 'true'
         run: npm publish --access public
