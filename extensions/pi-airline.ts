@@ -38,7 +38,8 @@ const paint = (color: string, s: string) => `${color}${s}${RESET}`;
 // Context bar: green <70%, yellow >=70%, red >=85%
 const contextColor = (pct: number) => (pct >= 85 ? RED : pct >= 70 ? YELLOW : GREEN);
 
-const BAR_WIDTH = 10;
+// Adaptive bar width, matching claude-hud's getAdaptiveBarWidth (10/6/4)
+const barWidthFor = (cols: number) => (cols >= 100 ? 10 : cols >= 60 ? 6 : 4);
 const SEP = paint(DIM, " │ ");
 
 const TICK_MS = 1_000; // elapsed-clock tick while idle
@@ -157,8 +158,9 @@ export default function (pi: ExtensionAPI) {
 					if (usage && usage.percent != null) {
 						const pct = Math.min(100, Math.max(0, usage.percent));
 						const color = contextColor(pct);
-						const filled = Math.round((pct / 100) * BAR_WIDTH);
-						const bar = paint(color, "█".repeat(filled)) + paint(DIM, "░".repeat(BAR_WIDTH - filled));
+						const barWidth = barWidthFor(width);
+						const filled = Math.round((pct / 100) * barWidth);
+						const bar = paint(color, "█".repeat(filled)) + paint(DIM, "░".repeat(barWidth - filled));
 						const pctText = paint(color, `${Math.round(pct)}%`);
 						lines.push(truncateToWidth(paint(DIM, "Context ") + bar + " " + pctText, width));
 					}

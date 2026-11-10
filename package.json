@@ -1,6 +1,6 @@
 {
   "name": "pi-airline",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Claude Code-style status line / HUD for pi: model │ project git:(branch) │ session duration + context usage bar",
   "license": "MIT",
   "author": "Ziy1-Tan",
@@ -47,8 +47,12 @@
     "@earendil-works/pi-tui": "*"
   },
   "peerDependenciesMeta": {
-    "@earendil-works/pi-coding-agent": { "optional": true },
-    "@earendil-works/pi-tui": { "optional": true }
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@earendil-works/pi-coding-agent": "^1.5.0",

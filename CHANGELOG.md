@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.1]
+
+- Change: the context bar width adapts to the terminal width, matching claude-hud: 10 cells at 100+ columns, 6 at 60-99, 4 below 60.
+
 ## [0.2.0]
 
 - Fix: dirty marker refreshes every 10s even with no tool activity, so it no longer sticks after committing from another terminal.
