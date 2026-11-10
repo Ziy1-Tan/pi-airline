@@ -3,7 +3,9 @@
  * (https://github.com/jarrodwatts/claude-hud), with matching colors (hardcoded ANSI).
  *
  * Replaces the footer with two lines:
- *   Line 1: [model] │ project git:(branch*) │ ⏱ elapsed (e.g. "5m", "2h 30m")
+ *   Line 1: [provider/model] │ project git:(branch*) │ ⏱ elapsed (e.g. "5m", "2h 30m")
+ *           (provider/ only when more than one provider is available, and dropped
+ *           first when the line would not fit)
  *   Line 2: Context █████░░░░░ 45%
  *
  * Data model:
@@ -20,7 +22,7 @@
  */
 
 import type { ContextUsage, ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
-import { truncateToWidth } from "@earendil-works/pi-tui";
+import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import { execFile } from "node:child_process";
 import { basename } from "node:path";
 
@@ -144,13 +146,25 @@ export default function (pi: ExtensionAPI) {
 				invalidate() {},
 				render(width: number): string[] {
 					const model = ctx.model?.name || ctx.model?.id || "no-model";
-					const head = [paint(CYAN, `[${model}]`), paint(YELLOW, basename(cwd))];
+					const rest = [paint(YELLOW, basename(cwd))];
 					if (git) {
-						head.push(paint(DIM, "git:") + paint(MAGENTA, `(${git.branch}${git.dirty ? "*" : ""})`));
+						rest.push(paint(DIM, "git:") + paint(MAGENTA, `(${git.branch}${git.dirty ? "*" : ""})`));
 					}
-					head.push(paint(DIM, `⏱ ${fmtDuration(Date.now() - sessionStart)}`));
+					rest.push(paint(DIM, `⏱ ${fmtDuration(Date.now() - sessionStart)}`));
+					const headWith = (label: string) => [paint(CYAN, `[${label}]`), ...rest].join(SEP);
 
-					const lines = [truncateToWidth(head.join(SEP), width)];
+					// Provider prefix only disambiguates when several providers are configured,
+					// matching the built-in footer; it is the first thing dropped when space runs out.
+					// getAvailableProviderCount may be missing on older pi versions.
+					const provider = ctx.model?.provider;
+					const multiProvider = (footerData.getAvailableProviderCount?.() ?? 0) > 1;
+					let head = headWith(model);
+					if (provider && multiProvider) {
+						const withProvider = headWith(`${provider}/${model}`);
+						if (visibleWidth(withProvider) <= width) head = withProvider;
+					}
+
+					const lines = [truncateToWidth(head, width)];
 
 					// percent is null right after compaction, until the next LLM
 					// response — unknown stays hidden instead of rendering 0%.

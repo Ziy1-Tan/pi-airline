@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.2]
+
+- Change: when more than one provider is available, the model badge shows the provider, e.g. `[anthropic/Claude Sonnet 4]`. The prefix is dropped first if the line would not fit.
+
 ## [0.2.1]
 
 - Change: the context bar width adapts to the terminal width, matching claude-hud: 10 cells at 100+ columns, 6 at 60-99, 4 below 60.
