@@ -150,7 +150,9 @@ export default function (pi: ExtensionAPI) {
 					if (git) {
 						rest.push(paint(DIM, "git:") + paint(MAGENTA, `(${git.branch}${git.dirty ? "*" : ""})`));
 					}
-					rest.push(paint(DIM, `⏱ ${fmtDuration(Date.now() - sessionStart)}`));
+					// U+FE0F asks for emoji presentation (full-size, 2 cells); the extra
+					// space guards terminals that draw it wider than they advance.
+					rest.push(paint(DIM, `\u23f1\ufe0f  ${fmtDuration(Date.now() - sessionStart)}`));
 					const headWith = (label: string) => [paint(CYAN, `[${label}]`), ...rest].join(SEP);
 
 					// Provider prefix only disambiguates when several providers are configured,

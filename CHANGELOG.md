@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.3]
+
+- Fix: the elapsed-time clock renders as a full-size emoji (`⏱️`, with the emoji variation selector) instead of the small text glyph.
+
 ## [0.2.2]
 
 - Change: when more than one provider is available, the model badge shows the provider, e.g. `[anthropic/Claude Sonnet 4]`. The prefix is dropped first if the line would not fit.
