@@ -6,7 +6,10 @@ on:
   workflow_dispatch:
 
 # Trusted Publishing (OIDC): no NPM_TOKEN secret. npm exchanges the GitHub
-# OIDC token for a short-lived publish credential and attaches provenance.
+# OIDC token for a short-lived credential and attaches provenance.
+# The trusted publisher is configured with "stage publish" permission: CI only
+# stages the version; a maintainer makes it public with 2FA:
+#   npm stage list pi-airline && npm stage approve <stage-id>
 permissions:
   contents: read
   id-token: write
@@ -22,7 +25,7 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
-      # Trusted publishing needs npm >= 11.5.1.
+      # Trusted publishing needs npm >= 11.5.1; `npm stage` needs a recent npm.
       - run: npm install -g npm@latest
 
       - name: Check tag matches package.json version
@@ -40,6 +43,6 @@ jobs:
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Publish
+      - name: Stage publish
         if: steps.check.outputs.skip != 'true'
-        run: npm publish
+        run: npm stage publish
